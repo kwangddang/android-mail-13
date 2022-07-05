@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Woowahan-Mail</string>
+    <string name="hint_name">닉네임</string>
+    <string name="hint_email">이메일</string>
 </resources>
