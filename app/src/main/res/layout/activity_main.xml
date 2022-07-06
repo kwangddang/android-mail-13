@@ -4,6 +4,6 @@
     android:id="@+id/fragment_container_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:name="com.example.woowahan_mail.LoginFragment"
-    tools:context=".MainActivity">
+    android:name="com.example.woowahan_mail.ui.login.LoginFragment"
+    tools:context=".ui.MainActivity">
 </androidx.fragment.app.FragmentContainerView>
