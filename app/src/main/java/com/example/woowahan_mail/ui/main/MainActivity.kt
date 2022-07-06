@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
+import androidx.fragment.app.FragmentManager
 import com.example.woowahan_mail.R
 import com.example.woowahan_mail.databinding.ActivityMainBinding
 import com.example.woowahan_mail.getDeviceWidth
@@ -42,22 +43,33 @@ class MainActivity : AppCompatActivity() {
         checkDeviceWidth()
     }
 
-    private fun checkDeviceWidth(){
-        if(getDeviceWidth() > 600){
+    private fun checkDeviceWidth() {
+        if (getDeviceWidth() > 600) {
             setNavigationRail()
-        }
-        else{
+        } else {
             setBottomNavigation()
         }
     }
 
     private fun showMailFragment() {
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_container_main, mailFragment).commit()
+        supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container_main, mailFragment).commit()
     }
 
     private fun showSettingFragment() {
         putUserData()
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_container_main, settingFragment).commit()
+        val fm = supportFragmentManager
+        if (fm.backStackEntryCount == 0) {
+            fm.beginTransaction().replace(R.id.fragment_container_main, settingFragment, this.getString(R.string.setting_fragment))
+                .addToBackStack(this.getString(R.string.setting_fragment)).commit()
+        }
+        else {
+            if (!(fm.getBackStackEntryAt(fm.backStackEntryCount - 1).name.equals(this.getString(R.string.setting_fragment)))) {
+                fm.beginTransaction().replace(R.id.fragment_container_main, settingFragment, this.getString(R.string.setting_fragment))
+                    .addToBackStack(this.getString(R.string.setting_fragment)).commit()
+            }
+        }
     }
 
     private fun putUserData() {
@@ -71,13 +83,13 @@ class MainActivity : AppCompatActivity() {
         settingFragment.arguments = bundle
     }
 
-    private fun setNavigationRail(){
+    private fun setNavigationRail() {
         initNavigationRailMenu()
         setNavigationRailSelectedIcon()
         setNavigationRailClickListener()
     }
 
-    private fun setBottomNavigation(){
+    private fun setBottomNavigation() {
         initBottomNavigationMenu()
         setBottomNavigationSelectedIcon()
         setBottomNavigationClickListener()
@@ -85,9 +97,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun initNavigationRailMenu() {
         binding.bottomNavigationMain.visibility = View.GONE
-        binding.navigationRailMain.visibility = View.VISIBLE
-        binding.navigationRailMain.menu.clear()
-        binding.navigationRailMain.inflateMenu(R.menu.main_menu)
+        binding.navigationRailMain.apply {
+            visibility = View.VISIBLE
+            menu.clear()
+            inflateMenu(R.menu.main_menu)
+        }
     }
 
     private fun setNavigationRailSelectedIcon() {
@@ -104,9 +118,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun initBottomNavigationMenu() {
         binding.navigationRailMain.visibility = View.GONE
-        binding.bottomNavigationMain.visibility = View.VISIBLE
-        binding.bottomNavigationMain.menu.clear()
-        binding.bottomNavigationMain.inflateMenu(R.menu.main_menu)
+        binding.bottomNavigationMain.apply {
+            visibility = View.VISIBLE
+            menu.clear()
+            inflateMenu(R.menu.main_menu)
+        }
     }
 
     private fun setBottomNavigationSelectedIcon() {
@@ -121,7 +137,7 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigationMain.setOnItemSelectedListener(menuItemClickListener)
     }
 
-    companion object{
+    companion object {
         const val SELECTED_MAIL = 1
         const val SELECTED_SETTING = 2
     }

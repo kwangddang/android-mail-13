@@ -14,4 +14,6 @@
     <string name="main_menu_mail">mail</string>
     <string name="main_menu_setting">setting</string>
     <string name="toolbar_main_title">W Mail</string>
+    <string name="setting_fragment">SettingFragment</string>
+    <string name="mail_fragment">MailFragment</string>
 </resources>
