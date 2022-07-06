@@ -52,6 +52,7 @@ class LoginActivity: AppCompatActivity() {
         val intent = Intent(this,MainActivity::class.java)
         intent.putExtra(this.getString(R.string.name),viewModel.name.value)
         intent.putExtra(this.getString(R.string.email),viewModel.email.value)
+        finishAffinity()
         startActivity(intent)
     }
 
