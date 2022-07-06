@@ -1,5 +1,6 @@
 package com.example.woowahan_mail.ui.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import android.view.View
@@ -7,6 +8,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.woowahan_mail.R
 import com.example.woowahan_mail.databinding.ActivityLoginBinding
+import com.example.woowahan_mail.ui.home.MainActivity
 import java.util.regex.Pattern
 
 class LoginActivity: AppCompatActivity() {
@@ -46,6 +48,13 @@ class LoginActivity: AppCompatActivity() {
         checkComplete()
     }
 
+    private val btnNextOnClickListener: (View) -> Unit = {
+        val intent = Intent(this,MainActivity::class.java)
+        intent.putExtra(this.getString(R.string.name),viewModel.name.value)
+        intent.putExtra(this.getString(R.string.email),viewModel.email.value)
+        startActivity(intent)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -65,10 +74,6 @@ class LoginActivity: AppCompatActivity() {
     private fun observeData(){
         viewModel.name.observe(this,nameObserver)
         viewModel.email.observe(this,emailObserver)
-    }
-
-    private val btnNextOnClickListener: (View) -> Unit = {
-
     }
 
     private fun setOnClickListeners(){
