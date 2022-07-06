@@ -8,4 +8,6 @@
     <string name="email_error_message">"올바른 이메일 형식을 입력해주세요."</string>
     <string name="name">name</string>
     <string name="email">email</string>
+    <string name="main_menu_mail">mail</string>
+    <string name="main_menu_setting">setting</string>
 </resources>

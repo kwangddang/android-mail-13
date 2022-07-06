@@ -8,7 +8,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.example.woowahan_mail.R
 import com.example.woowahan_mail.databinding.ActivityLoginBinding
-import com.example.woowahan_mail.ui.home.MainActivity
+import com.example.woowahan_mail.ui.main.MainActivity
 import java.util.regex.Pattern
 
 class LoginActivity: AppCompatActivity() {
