@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
+import androidx.core.view.GravityCompat
 import androidx.fragment.app.FragmentManager
 import com.example.woowahan_mail.R
 import com.example.woowahan_mail.databinding.ActivityMainBinding
@@ -41,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         checkDeviceWidth()
+        setOnClickListeners()
     }
 
     private fun checkDeviceWidth() {
@@ -48,6 +50,16 @@ class MainActivity : AppCompatActivity() {
             setNavigationRail()
         } else {
             setBottomNavigation()
+        }
+    }
+
+    private fun setOnClickListeners(){
+        binding.imgToolbarMainMore.setOnClickListener{
+            binding.drawerMainContainer.openDrawer(GravityCompat.START)
+        }
+        binding.navigationMainDrawer.setNavigationItemSelectedListener { menuItem ->
+            Log.d("Test",menuItem.toString())
+            true
         }
     }
 

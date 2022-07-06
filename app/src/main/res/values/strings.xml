@@ -16,4 +16,8 @@
     <string name="toolbar_main_title">W Mail</string>
     <string name="setting_fragment">SettingFragment</string>
     <string name="mail_fragment">MailFragment</string>
+    <string name="drawer_menu_primary">primary</string>
+    <string name="drawer_menu_social">social</string>
+    <string name="drawer_menu_promotions">promotions</string>
+    <string name="drawer_header_title">W mail</string>
 </resources>
