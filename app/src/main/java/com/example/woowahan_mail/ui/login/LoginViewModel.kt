@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class LoginViewModel: ViewModel() {
-    var email = MutableLiveData("")
-    var name = MutableLiveData("")
+    val name = MutableLiveData("")
+    val email = MutableLiveData("")
+    var nameSuccess = false
+    var emailSuccess = false
 }

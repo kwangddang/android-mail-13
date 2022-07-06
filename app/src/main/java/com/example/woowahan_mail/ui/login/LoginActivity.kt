@@ -17,24 +17,33 @@ class LoginActivity: AppCompatActivity() {
     private val nameObserver: (String) -> Unit = { name ->
         if(checkNameValidation(name)){
             setDefaultNameMessage()
-            setEmailVisible()
+            viewModel.nameSuccess = true
         }
         else if(name.isBlank()){
             setDefaultNameMessage()
+            viewModel.nameSuccess = false
         }
         else{
             setErrorNameMessage()
-            setEmailInvisible()
+            viewModel.nameSuccess = false
         }
+        checkComplete()
     }
 
     private val emailObserver: (String) -> Unit = { email ->
-        if(checkEmailValidation(email) || email.isBlank()){
+        if(checkEmailValidation(email)){
             setDefaultEmailMessage()
+            viewModel.emailSuccess = true
+        }
+        else if(email.isBlank()){
+            setDefaultNameMessage()
+            viewModel.emailSuccess = false
         }
         else{
             setErrorEmailMessage()
+            viewModel.emailSuccess = false
         }
+        checkComplete()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,6 +75,10 @@ class LoginActivity: AppCompatActivity() {
         binding.btnLoginNext.setOnClickListener(btnNextOnClickListener)
     }
 
+    private fun checkComplete(){
+        binding.btnLoginNext.isEnabled = viewModel.nameSuccess && viewModel.emailSuccess
+    }
+
     private fun checkNameValidation(name: String): Boolean{
         var numberCount = 0
         var englishCount = 0
@@ -83,7 +96,6 @@ class LoginActivity: AppCompatActivity() {
         return pattern.matcher(email).matches()
     }
 
-
     private fun setDefaultNameMessage(){
         binding.textInputLayoutLoginName.error = null
     }
@@ -98,13 +110,5 @@ class LoginActivity: AppCompatActivity() {
 
     private fun setErrorEmailMessage(){
         binding.textInputLayoutLoginEmail.error = this.getString(R.string.email_error_message)
-    }
-
-    private fun setEmailVisible(){
-        binding.textInputLayoutLoginEmail.visibility = View.VISIBLE
-    }
-
-    private fun setEmailInvisible(){
-        binding.textInputLayoutLoginEmail.visibility = View.INVISIBLE
     }
 }
