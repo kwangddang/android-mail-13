@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.woowahan_mail.R
 import com.example.woowahan_mail.databinding.FragmentLoginBinding
+import com.example.woowahan_mail.ui.home.HomeFragment
 import java.util.regex.Pattern
 
 class LoginFragment: Fragment() {
@@ -42,16 +43,37 @@ class LoginFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentLoginBinding.inflate(inflater,container,false)
-        binding.apply {
-            vm = viewModel
-            lifecycleOwner = this@LoginFragment
-        }
+        initDataBinding()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeData()
+        setOnClickListeners()
+    }
+
+    private fun initDataBinding() {
+        binding.apply {
+            vm = viewModel
+            lifecycleOwner = this@LoginFragment
+        }
+    }
+
+    private fun observeData(){
+        viewModel.name.observe(viewLifecycleOwner,nameObserver)
+        viewModel.email.observe(viewLifecycleOwner,emailObserver)
+    }
+
+    private val btnNextOnClickListener: (View) -> Unit = {
+        requireActivity().supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.fragment_container_activity, HomeFragment())
+            .commit()
+    }
+
+    private fun setOnClickListeners(){
+        binding.btnLoginNext.setOnClickListener(btnNextOnClickListener)
     }
 
     private fun checkNameValidation(name: String): Boolean{
@@ -68,10 +90,6 @@ class LoginFragment: Fragment() {
         return pattern.matcher(email).matches()
     }
 
-    private fun observeData(){
-        viewModel.name.observe(viewLifecycleOwner,nameObserver)
-        viewModel.email.observe(viewLifecycleOwner,emailObserver)
-    }
 
     private fun setDefaultNameMessage(){
         binding.textInputLayoutLoginName.error = null
