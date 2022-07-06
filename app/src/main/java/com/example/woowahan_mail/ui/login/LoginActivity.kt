@@ -2,28 +2,29 @@ package com.example.woowahan_mail.ui.login
 
 import android.os.Bundle
 import android.util.Patterns
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.example.woowahan_mail.R
-import com.example.woowahan_mail.databinding.FragmentLoginBinding
-import com.example.woowahan_mail.ui.home.HomeFragment
+import com.example.woowahan_mail.databinding.ActivityLoginBinding
 import java.util.regex.Pattern
 
-class LoginFragment: Fragment() {
-    private var _binding: FragmentLoginBinding? = null
-    private val binding get() = _binding!!
+class LoginActivity: AppCompatActivity() {
+    private lateinit var binding: ActivityLoginBinding
 
     private val viewModel: LoginViewModel by viewModels()
 
     private val nameObserver: (String) -> Unit = { name ->
-        if(checkNameValidation(name) || name.isBlank()){
+        if(checkNameValidation(name)){
+            setDefaultNameMessage()
+            setEmailVisible()
+        }
+        else if(name.isBlank()){
             setDefaultNameMessage()
         }
         else{
             setErrorNameMessage()
+            setEmailInvisible()
         }
     }
 
@@ -36,19 +37,11 @@ class LoginFragment: Fragment() {
         }
     }
 
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentLoginBinding.inflate(inflater,container,false)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         initDataBinding()
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         observeData()
         setOnClickListeners()
     }
@@ -56,20 +49,17 @@ class LoginFragment: Fragment() {
     private fun initDataBinding() {
         binding.apply {
             vm = viewModel
-            lifecycleOwner = this@LoginFragment
+            lifecycleOwner = this@LoginActivity
         }
     }
 
     private fun observeData(){
-        viewModel.name.observe(viewLifecycleOwner,nameObserver)
-        viewModel.email.observe(viewLifecycleOwner,emailObserver)
+        viewModel.name.observe(this,nameObserver)
+        viewModel.email.observe(this,emailObserver)
     }
 
     private val btnNextOnClickListener: (View) -> Unit = {
-        requireActivity().supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.fragment_container_activity, HomeFragment())
-            .commit()
+
     }
 
     private fun setOnClickListeners(){
@@ -78,11 +68,14 @@ class LoginFragment: Fragment() {
 
     private fun checkNameValidation(name: String): Boolean{
         var numberCount = 0
+        var englishCount = 0
         for(text in name){
             if(text in '0'..'9')
                 numberCount++
+            else if (text in 'A'..'z')
+                englishCount++
         }
-        return name.length > 3 && numberCount > 0
+        return name.length > 3 && numberCount > 0 && englishCount > 0
     }
 
     private fun checkEmailValidation(email: String): Boolean{
@@ -96,7 +89,7 @@ class LoginFragment: Fragment() {
     }
 
     private fun setErrorNameMessage(){
-        binding.textInputLayoutLoginName.error = context?.getString(R.string.name_error_message)
+        binding.textInputLayoutLoginName.error = this.getString(R.string.name_error_message)
     }
 
     private fun setDefaultEmailMessage(){
@@ -104,11 +97,14 @@ class LoginFragment: Fragment() {
     }
 
     private fun setErrorEmailMessage(){
-        binding.textInputLayoutLoginEmail.error = context?.getString(R.string.email_error_message)
+        binding.textInputLayoutLoginEmail.error = this.getString(R.string.email_error_message)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun setEmailVisible(){
+        binding.textInputLayoutLoginEmail.visibility = View.VISIBLE
+    }
+
+    private fun setEmailInvisible(){
+        binding.textInputLayoutLoginEmail.visibility = View.INVISIBLE
     }
 }

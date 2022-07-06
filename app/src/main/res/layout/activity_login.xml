@@ -10,10 +10,10 @@
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_login_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="100dp">
+        android:paddingHorizontal="16dp">
 
         <ImageView
             android:id="@+id/img_login_edit"
@@ -49,6 +49,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_name"
                 android:digits="0123456789_qwertzuiopasdfghjklyxcvbnm"
+                android:imeOptions="flagNoExtractUi"
                 bind:nameValidation="@={vm.name}"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -59,6 +60,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_input_layout_login_name">
@@ -68,6 +70,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/hint_email"
+                android:imeOptions="flagNoExtractUi"
                 bind:emailValidation="@={vm.email}"/>
 
         </com.google.android.material.textfield.TextInputLayout>
