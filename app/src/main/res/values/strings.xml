@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name">Woowahan-Mail</string>
-    <string name="hint_name">닉네임</string>
-    <string name="hint_email">이메일</string>
+    <string name="hint_login_name">닉네임</string>
+    <string name="hint_login_email">이메일</string>
     <string name="login_next">Next</string>
+
+    <string name="setting_name_label">닉네임:</string>
+    <string name="setting_email_label">이메일:</string>
 
     <string name="name_error_message">"닉네임은 영문과 숫자를 결합한 4~12자로 입력해주세요."</string>
     <string name="email_error_message">"올바른 이메일 형식을 입력해주세요."</string>

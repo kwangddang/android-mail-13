@@ -49,7 +49,7 @@
                 android:id="@+id/text_input_edit_text_login_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/hint_name"
+                android:hint="@string/hint_login_name"
                 android:digits="0123456789_qwertzuiopasdfghjklyxcvbnm"
                 android:imeOptions="flagNoExtractUi"
                 bind:nameValidation="@={vm.name}"/>
@@ -70,7 +70,7 @@
                 android:id="@+id/text_input_edit_text_login_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/hint_email"
+                android:hint="@string/hint_login_email"
                 android:imeOptions="flagNoExtractUi"
                 bind:emailValidation="@={vm.email}"/>
 

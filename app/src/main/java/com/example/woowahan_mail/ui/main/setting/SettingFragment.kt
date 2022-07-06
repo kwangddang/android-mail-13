@@ -1,10 +1,12 @@
 package com.example.woowahan_mail.ui.main.setting
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.woowahan_mail.R
 import com.example.woowahan_mail.databinding.FragmentSettingBinding
 
 class SettingFragment: Fragment() {
@@ -22,6 +24,14 @@ class SettingFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initViews()
+    }
+
+    private fun initViews(){
+        binding.apply {
+            email = arguments?.getString(requireContext().getString(R.string.email))
+            name = arguments?.getString(requireContext().getString(R.string.name))
+        }
     }
 
     override fun onDestroyView() {

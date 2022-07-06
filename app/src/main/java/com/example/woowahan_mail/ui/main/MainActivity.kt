@@ -2,6 +2,7 @@ package com.example.woowahan_mail.ui.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
@@ -22,11 +23,11 @@ class MainActivity : AppCompatActivity() {
 
     private val menuItemClickListener: (MenuItem) -> Boolean = { menuItem ->
         if (menuItem.itemId == R.id.item_main_menu_mail) {
-            setScreenToMailFragment()
+            showMailFragment()
             viewModel.currentFocus = SELECTED_MAIL
             true
         } else if (menuItem.itemId == R.id.item_main_menu_setting) {
-            setScreenToSettingFragment()
+            showSettingFragment()
             viewModel.currentFocus = SELECTED_SETTING
             true
         } else {
@@ -50,12 +51,24 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setScreenToMailFragment() {
+    private fun showMailFragment() {
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container_main, mailFragment).commit()
     }
 
-    private fun setScreenToSettingFragment() {
+    private fun showSettingFragment() {
+        putUserData()
         supportFragmentManager.beginTransaction().replace(R.id.fragment_container_main, settingFragment).commit()
+    }
+
+    private fun putUserData() {
+        val bundle = Bundle()
+        val nameTag = this.getString(R.string.name)
+        val emailTag = this.getString(R.string.email)
+        val name = intent.getStringExtra(nameTag)
+        val email = intent.getStringExtra(emailTag)
+        bundle.putString(nameTag, name)
+        bundle.putString(emailTag, email)
+        settingFragment.arguments = bundle
     }
 
     private fun setNavigationRail(){
