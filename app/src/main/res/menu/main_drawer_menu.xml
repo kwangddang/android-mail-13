@@ -3,15 +3,18 @@
     <item
         android:id="@+id/item_drawer_menu_primary"
         android:icon="@drawable/ic_primary"
+        android:enabled="true"
         android:title="@string/drawer_menu_primary"/>
 
     <item
         android:id="@+id/item_drawer_menu_social"
         android:icon="@drawable/ic_social"
+        android:enabled="true"
         android:title="@string/drawer_menu_social"/>
 
     <item
         android:id="@+id/item_drawer_menu_promotions"
         android:icon="@drawable/ic_promotions"
+        android:enabled="true"
         android:title="@string/drawer_menu_promotions"/>
 </menu>

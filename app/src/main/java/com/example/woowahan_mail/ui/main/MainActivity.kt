@@ -194,5 +194,9 @@ class MainActivity : AppCompatActivity() {
     companion object {
         const val SELECTED_MAIL = 1
         const val SELECTED_SETTING = 2
+
+        const val SELECTED_PRIMARY = 0
+        const val SELECTED_SOCIAL = 1
+        const val SELECTED_PROMOTIONS = 2
     }
 }

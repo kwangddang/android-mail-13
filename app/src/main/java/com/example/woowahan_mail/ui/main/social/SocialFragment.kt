@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.woowahan_mail.databinding.FragmentSocialBinding
+import com.example.woowahan_mail.setDrawerIconColor
+import com.example.woowahan_mail.ui.main.MainActivity
 
 class SocialFragment: Fragment() {
     private var _binding: FragmentSocialBinding? = null
@@ -22,6 +24,7 @@ class SocialFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setDrawerIconColor(MainActivity.SELECTED_SOCIAL)
     }
 
     override fun onDestroyView() {

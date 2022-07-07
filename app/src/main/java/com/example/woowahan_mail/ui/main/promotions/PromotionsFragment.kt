@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.woowahan_mail.databinding.FragmentPromotionsBinding
+import com.example.woowahan_mail.setDrawerIconColor
+import com.example.woowahan_mail.ui.main.MainActivity
 
 class PromotionsFragment: Fragment() {
     private var _binding: FragmentPromotionsBinding? = null
@@ -22,7 +24,9 @@ class PromotionsFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setDrawerIconColor(MainActivity.SELECTED_PROMOTIONS)
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
