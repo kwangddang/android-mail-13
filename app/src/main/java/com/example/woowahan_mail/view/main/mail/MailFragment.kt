@@ -88,10 +88,7 @@ class MailFragment: Fragment() {
         callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 if(viewModel.currentMail != PRIMARY) {
-                    (binding.recyclerPrimary.adapter as MailAdapter).setDummyData(DummyData.primaryMail)
-                    viewModel.currentMail = PRIMARY
-                    binding.textPrimaryTitle.text = requireContext().getString(R.string.primary_title)
-                    requireActivity().setDrawerIconColor(PRIMARY)
+                    showPrimaryMail()
                 }
                 else{
                     requireActivity().finish()
@@ -99,6 +96,13 @@ class MailFragment: Fragment() {
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(this,callback)
+    }
+
+    private fun showPrimaryMail() {
+        (binding.recyclerPrimary.adapter as MailAdapter).setDummyData(DummyData.primaryMail)
+        viewModel.currentMail = PRIMARY
+        binding.textPrimaryTitle.text = requireContext().getString(R.string.primary_title)
+        requireActivity().setDrawerIconColor(PRIMARY)
     }
 
     override fun onDestroyView() {

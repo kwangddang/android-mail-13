@@ -5,12 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.example.woowahan_mail.R
 import com.example.woowahan_mail.databinding.FragmentSettingBinding
+import com.example.woowahan_mail.view.main.MainViewModel
 
 class SettingFragment: Fragment() {
     private var _binding: FragmentSettingBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,8 +32,8 @@ class SettingFragment: Fragment() {
 
     private fun initBinding(){
         binding.apply {
-            email = arguments?.getString(requireContext().getString(R.string.email))
-            name = arguments?.getString(requireContext().getString(R.string.name))
+            email = viewModel.email
+            name = viewModel.name
         }
     }
 

@@ -22,9 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel: MainViewModel by viewModels()
 
-    private val fm: FragmentManager by lazy {
-        supportFragmentManager
-    }
+    private val fm: FragmentManager by lazy { supportFragmentManager }
 
     private val menuItemClickListener: (MenuItem) -> Boolean = { menuItem ->
         if (menuItem.itemId == R.id.item_main_menu_mail) {
@@ -43,27 +41,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val drawerMenuItemClickListener: (MenuItem) -> Boolean = { menuItem ->
+        viewModel.currentFocus = SELECTED_MAIL
+        binding.drawerMainContainer.closeDrawer(GravityCompat.START)
         when (menuItem.itemId) {
             R.id.item_drawer_menu_primary -> {
-                viewModel.currentFocus = SELECTED_MAIL
                 viewModel.currentMail = MailFragment.PRIMARY
-                binding.drawerMainContainer.closeDrawer(GravityCompat.START)
                 setDrawerIconColor(MailFragment.PRIMARY)
                 showMailFragment()
                 true
             }
             R.id.item_drawer_menu_social -> {
-                viewModel.currentFocus = SELECTED_MAIL
                 viewModel.currentMail = MailFragment.SOCIAL
-                binding.drawerMainContainer.closeDrawer(GravityCompat.START)
                 setDrawerIconColor(MailFragment.SOCIAL)
                 showMailFragment()
                 true
             }
             R.id.item_drawer_menu_promotions -> {
-                viewModel.currentFocus = SELECTED_MAIL
                 viewModel.currentMail = MailFragment.PROMOTIONS
-                binding.drawerMainContainer.closeDrawer(GravityCompat.START)
                 setDrawerIconColor(MailFragment.PROMOTIONS)
                 showMailFragment()
                 true
@@ -79,8 +73,14 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setDrawerIconColor(viewModel.currentMail)
+        setEmailAndName()
         setProperView()
         setOnClickListeners()
+    }
+
+    private fun setEmailAndName(){
+        viewModel.name = intent.getStringExtra(this.getString(R.string.name))!!
+        viewModel.email = intent.getStringExtra(this.getString(R.string.email))!!
     }
 
     private fun setProperView() {
@@ -120,7 +120,8 @@ class MainActivity : AppCompatActivity() {
     private fun setNavigationRailSelectedIcon() {
         if (viewModel.currentFocus == SELECTED_MAIL) {
             binding.navigationRailMain.menu.findItem(R.id.item_main_menu_mail).isChecked = true
-        } else {
+        }
+        else {
             binding.navigationRailMain.menu.findItem(R.id.item_main_menu_setting).isChecked = true
         }
     }
@@ -156,7 +157,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showSettingFragment() {
-        putUserData()
         val tag = this.getString(R.string.setting_fragment)
         if (fm.backStackEntryCount == 0) {
             fm.beginTransaction().replace(R.id.fragment_container_main, settingFragment, tag).addToBackStack(tag).commit()
@@ -166,17 +166,6 @@ class MainActivity : AppCompatActivity() {
             fm.popBackStack()
             fm.beginTransaction().replace(R.id.fragment_container_main, settingFragment, tag).addToBackStack(tag).commit()
         }
-    }
-
-    private fun putUserData() {
-        val bundle = Bundle()
-        val nameTag = this.getString(R.string.name)
-        val emailTag = this.getString(R.string.email)
-        val name = intent.getStringExtra(nameTag)
-        val email = intent.getStringExtra(emailTag)
-        bundle.putString(nameTag, name)
-        bundle.putString(emailTag, email)
-        settingFragment.arguments = bundle
     }
 
     companion object {

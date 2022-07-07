@@ -30,7 +30,7 @@
             android:id="@+id/view_login_line"
             android:layout_width="48dp"
             android:layout_height="8dp"
-            android:background="@color/black"
+            android:background="@color/colorOnSecondary"
             app:layout_constraintEnd_toEndOf="@id/img_login_edit"
             app:layout_constraintStart_toStartOf="@id/img_login_edit"
             app:layout_constraintTop_toBottomOf="@id/img_login_edit" />
