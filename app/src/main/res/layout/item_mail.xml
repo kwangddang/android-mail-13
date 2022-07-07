@@ -21,7 +21,7 @@
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:background="@drawable/circle"
-            android:backgroundTint="@color/colorPrimary"
+            bind:profile="@{null}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

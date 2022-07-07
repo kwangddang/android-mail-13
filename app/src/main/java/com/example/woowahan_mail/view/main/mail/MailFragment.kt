@@ -7,8 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.woowahan_mail.R
 import com.example.woowahan_mail.databinding.FragmentMailBinding
+import com.example.woowahan_mail.getDeviceWidth
 import com.example.woowahan_mail.view.main.MainActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.navigationrail.NavigationRailView
 
 class MailFragment: Fragment() {
     private var _binding: FragmentMailBinding? = null
@@ -29,9 +32,16 @@ class MailFragment: Fragment() {
     }
 
     private fun setIcon() {
-        (requireActivity() as MainActivity).findViewById<BottomNavigationView>(R.id.bottom_navigation_main).menu.findItem(
-            R.id.item_main_menu_mail
-        ).isChecked = true
+        if(requireActivity().getDeviceWidth() > 600){
+            (requireActivity() as MainActivity).findViewById<NavigationRailView>(R.id.navigation_rail_main).menu.findItem(
+                R.id.item_main_menu_mail
+            ).isChecked = true
+        }
+        else{
+            (requireActivity() as MainActivity).findViewById<BottomNavigationView>(R.id.bottom_navigation_main).menu.findItem(
+                R.id.item_main_menu_mail
+            ).isChecked = true
+        }
     }
 
     override fun onDestroyView() {

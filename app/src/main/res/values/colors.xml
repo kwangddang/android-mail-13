@@ -7,6 +7,13 @@
     <color name="colorSecondary">#ffffff</color>
     <color name="colorSecondaryVariant">#ffffff</color>
     <color name="colorOnSecondary">#000000</color>
+    
+    <color name="red">#e57373</color>
+    <color name="orange">#ffb74d</color>
+    <color name="green">#81c784</color>
+    <color name="blue">#64b5f6</color>
+    <color name="indigo">#7986cb</color>
+    <color name="purple">#ba68c8</color>
 
     <color name="toolBar">#ffffff</color>
 
