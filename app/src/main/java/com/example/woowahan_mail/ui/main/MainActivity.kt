@@ -7,12 +7,16 @@ import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.core.view.GravityCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.woowahan_mail.R
 import com.example.woowahan_mail.databinding.ActivityMainBinding
 import com.example.woowahan_mail.getDeviceWidth
 import com.example.woowahan_mail.ui.main.mail.MailFragment
+import com.example.woowahan_mail.ui.main.primary.PrimaryFragment
+import com.example.woowahan_mail.ui.main.promotions.PromotionsFragment
 import com.example.woowahan_mail.ui.main.setting.SettingFragment
+import com.example.woowahan_mail.ui.main.social.SocialFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,8 +24,15 @@ class MainActivity : AppCompatActivity() {
 
     private val mailFragment = MailFragment()
     private val settingFragment = SettingFragment()
+    private val primaryFragment = PrimaryFragment()
+    private val socialFragment = SocialFragment()
+    private val promotionsFragment = PromotionsFragment()
 
     private val viewModel: MainViewModel by viewModels()
+
+    private val fm: FragmentManager by lazy {
+        supportFragmentManager
+    }
 
     private val menuItemClickListener: (MenuItem) -> Boolean = { menuItem ->
         if (menuItem.itemId == R.id.item_main_menu_mail) {
@@ -34,6 +45,29 @@ class MainActivity : AppCompatActivity() {
             true
         } else {
             false
+        }
+    }
+
+    private val drawerMenuItemClickListener: (MenuItem) -> Boolean = { menuItem ->
+        when (menuItem.itemId) {
+            R.id.item_drawer_menu_primary -> {
+                showPrimaryFragment()
+                binding.drawerMainContainer.closeDrawer(GravityCompat.START)
+                true
+            }
+            R.id.item_drawer_menu_social -> {
+                showSocialFragment()
+                binding.drawerMainContainer.closeDrawer(GravityCompat.START)
+                true
+            }
+            R.id.item_drawer_menu_promotions -> {
+                showPromotionsFragment()
+                binding.drawerMainContainer.closeDrawer(GravityCompat.START)
+                true
+            }
+            else -> {
+                false
+            }
         }
     }
 
@@ -54,33 +88,41 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setOnClickListeners(){
-        binding.imgToolbarMainMore.setOnClickListener{
-            binding.drawerMainContainer.openDrawer(GravityCompat.START)
-        }
-        binding.navigationMainDrawer.setNavigationItemSelectedListener { menuItem ->
-            Log.d("Test",menuItem.toString())
-            true
-        }
+        binding.imgToolbarMainMore.setOnClickListener{ binding.drawerMainContainer.openDrawer(GravityCompat.START) }
+        binding.navigationMainDrawer.setNavigationItemSelectedListener(drawerMenuItemClickListener)
     }
 
     private fun showMailFragment() {
-        supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container_main, mailFragment).commit()
+        fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        fm.beginTransaction().replace(R.id.fragment_container_main, mailFragment).commit()
     }
 
     private fun showSettingFragment() {
         putUserData()
-        val fm = supportFragmentManager
+        setFragmentBackStack(R.id.fragment_container_main, this.getString(R.string.setting_fragment), settingFragment)
+    }
+
+    private fun showPrimaryFragment() {
+        fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        fm.beginTransaction().replace(R.id.fragment_container_mail, primaryFragment).commit()
+    }
+
+    private fun showSocialFragment() {
+        setFragmentBackStack(R.id.fragment_container_mail, this.getString(R.string.social_fragment), socialFragment)
+    }
+
+    private fun showPromotionsFragment() {
+        setFragmentBackStack(R.id.fragment_container_mail, this.getString(R.string.promotions_fragment), promotionsFragment)
+    }
+
+    private fun setFragmentBackStack(container: Int, tag: String, fragment: Fragment){
         if (fm.backStackEntryCount == 0) {
-            fm.beginTransaction().replace(R.id.fragment_container_main, settingFragment, this.getString(R.string.setting_fragment))
-                .addToBackStack(this.getString(R.string.setting_fragment)).commit()
+            fm.beginTransaction().replace(container, fragment, tag).addToBackStack(tag).commit()
         }
+        else if(fm.getBackStackEntryAt(fm.backStackEntryCount - 1).name == tag)
         else {
-            if (!(fm.getBackStackEntryAt(fm.backStackEntryCount - 1).name.equals(this.getString(R.string.setting_fragment)))) {
-                fm.beginTransaction().replace(R.id.fragment_container_main, settingFragment, this.getString(R.string.setting_fragment))
-                    .addToBackStack(this.getString(R.string.setting_fragment)).commit()
-            }
+            fm.popBackStack()
+            fm.beginTransaction().replace(container, fragment, tag).addToBackStack(tag).commit()
         }
     }
 
