@@ -9,6 +9,6 @@
         android:id="@+id/fragment_container_mail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.example.woowahan_mail.ui.main.primary.PrimaryFragment"/>
+        android:name="com.example.woowahan_mail.view.main.primary.PrimaryFragment"/>
 
 </LinearLayout>

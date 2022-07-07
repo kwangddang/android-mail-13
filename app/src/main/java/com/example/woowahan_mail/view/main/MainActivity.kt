@@ -1,8 +1,7 @@
-package com.example.woowahan_mail.ui.main
+package com.example.woowahan_mail.view.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
@@ -12,11 +11,11 @@ import androidx.fragment.app.FragmentManager
 import com.example.woowahan_mail.R
 import com.example.woowahan_mail.databinding.ActivityMainBinding
 import com.example.woowahan_mail.getDeviceWidth
-import com.example.woowahan_mail.ui.main.mail.MailFragment
-import com.example.woowahan_mail.ui.main.primary.PrimaryFragment
-import com.example.woowahan_mail.ui.main.promotions.PromotionsFragment
-import com.example.woowahan_mail.ui.main.setting.SettingFragment
-import com.example.woowahan_mail.ui.main.social.SocialFragment
+import com.example.woowahan_mail.view.main.mail.MailFragment
+import com.example.woowahan_mail.view.main.primary.PrimaryFragment
+import com.example.woowahan_mail.view.main.promotions.PromotionsFragment
+import com.example.woowahan_mail.view.main.setting.SettingFragment
+import com.example.woowahan_mail.view.main.social.SocialFragment
 
 class MainActivity : AppCompatActivity() {
 

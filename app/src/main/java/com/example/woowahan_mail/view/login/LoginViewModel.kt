@@ -1,4 +1,4 @@
-package com.example.woowahan_mail.ui.login
+package com.example.woowahan_mail.view.login
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

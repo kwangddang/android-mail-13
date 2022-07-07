@@ -4,11 +4,10 @@ import android.app.Activity
 import android.content.Context
 import android.os.Build
 import android.util.DisplayMetrics
-import android.view.Menu
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.fragment.app.Fragment
-import com.example.woowahan_mail.ui.main.MainActivity
+import com.example.woowahan_mail.view.main.MainActivity
 import com.google.android.material.navigation.NavigationView
 
 fun Activity.getDeviceWidth(): Float {

@@ -1,4 +1,4 @@
-package com.example.woowahan_mail.ui.main.primary
+package com.example.woowahan_mail.view.main.primary
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.woowahan_mail.databinding.FragmentPrimaryBinding
 import com.example.woowahan_mail.setDrawerIconColor
-import com.example.woowahan_mail.ui.main.MainActivity
+import com.example.woowahan_mail.view.main.MainActivity
 
 class PrimaryFragment: Fragment() {
     private var _binding: FragmentPrimaryBinding? = null

@@ -1,4 +1,4 @@
-package com.example.woowahan_mail.ui.main
+package com.example.woowahan_mail.view.main
 
 import androidx.lifecycle.ViewModel
 

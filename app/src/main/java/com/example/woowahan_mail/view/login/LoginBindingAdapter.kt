@@ -1,4 +1,4 @@
-package com.example.woowahan_mail.ui.login
+package com.example.woowahan_mail.view.login
 
 import android.text.Editable
 import android.text.TextWatcher
