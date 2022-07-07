@@ -12,7 +12,7 @@ class MailAdapter: RecyclerView.Adapter<MailViewHolder>() {
 
     fun setDummyData(dummyData: List<Mail>){
         mails = dummyData
-        notifyDataSetChanged()
+        notifyItemRangeChanged(0,itemCount)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MailViewHolder {

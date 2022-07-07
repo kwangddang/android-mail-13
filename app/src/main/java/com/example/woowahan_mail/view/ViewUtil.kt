@@ -30,9 +30,11 @@ fun Activity.getDeviceWidth(): Float {
 
 fun Fragment.setDrawerIconColor(num: Int){
     val idArr = arrayOf(R.id.item_drawer_menu_primary, R.id.item_drawer_menu_social, R.id.item_drawer_menu_promotions)
-    val menu = (requireActivity() as MainActivity).findViewById<NavigationView>(R.id.navigation_main_drawer).menu
+    val menu = getMainActivity().findViewById<NavigationView>(R.id.navigation_main_drawer).menu
 
     for(i in 0..2){
         menu.findItem(idArr[i]).isChecked = i == num
     }
 }
+
+fun Fragment.getMainActivity(): MainActivity = requireActivity() as MainActivity

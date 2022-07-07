@@ -17,9 +17,8 @@
 
     <string name="setting_fragment">SettingFragment</string>
     <string name="mail_fragment">MailFragment</string>
-    <string name="primary_fragment">PrimaryFragment</string>
-    <string name="social_fragment">SocialFragment</string>
-    <string name="promotions_fragment">PromotionsFragment</string>
+
+
 
     <string name="drawer_menu_primary">primary</string>
     <string name="drawer_menu_social">social</string>
@@ -27,5 +26,5 @@
     <string name="drawer_header_title">W mail</string>
     <string name="primary_title">Primary</string>
     <string name="promotions_title">Promotions</string>
-    <string name="social_title">social</string>
+    <string name="social_title">Social</string>
 </resources>

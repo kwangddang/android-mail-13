@@ -23,10 +23,10 @@ class SettingFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViews()
+        initBinding()
     }
 
-    private fun initViews(){
+    private fun initBinding(){
         binding.apply {
             email = arguments?.getString(requireContext().getString(R.string.email))
             name = arguments?.getString(requireContext().getString(R.string.name))
