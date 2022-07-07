@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.woowahan_mail.R
 import com.example.woowahan_mail.databinding.FragmentMailBinding
-import com.example.woowahan_mail.getDeviceWidth
+import com.example.woowahan_mail.view.getDeviceWidth
 import com.example.woowahan_mail.view.main.MainActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView

@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.example.woowahan_mail.R
 import com.example.woowahan_mail.databinding.ActivityMainBinding
-import com.example.woowahan_mail.getDeviceWidth
+import com.example.woowahan_mail.view.getDeviceWidth
 import com.example.woowahan_mail.view.main.mail.MailFragment
 import com.example.woowahan_mail.view.main.mail.primary.PrimaryFragment
 import com.example.woowahan_mail.view.main.mail.promotions.PromotionsFragment

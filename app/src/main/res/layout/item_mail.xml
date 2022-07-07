@@ -16,14 +16,14 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <View
-            android:id="@+id/view_imail_profile"
+        <ImageView
+            android:id="@+id/img_imail_profile"
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:background="@drawable/circle"
-            bind:profile="@{null}"
+            android:background="@drawable/circle_background_transparent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            bind:profile="@{mail.addresser}" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -31,10 +31,10 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:textColor="@color/black"
-            app:layout_constraintStart_toStartOf="@id/view_imail_profile"
-            app:layout_constraintEnd_toEndOf="@id/view_imail_profile"
-            app:layout_constraintTop_toTopOf="@id/view_imail_profile"
-            app:layout_constraintBottom_toBottomOf="@id/view_imail_profile"
+            app:layout_constraintStart_toStartOf="@id/img_imail_profile"
+            app:layout_constraintEnd_toEndOf="@id/img_imail_profile"
+            app:layout_constraintTop_toTopOf="@id/img_imail_profile"
+            app:layout_constraintBottom_toBottomOf="@id/img_imail_profile"
             bind:addresser="@{mail.addresser}"
             tools:text="C"/>
 
@@ -47,8 +47,8 @@
             android:paddingVertical="4dp"
             android:layout_marginStart="8dp"
             android:text="@{mail.addresser}"
-            app:layout_constraintTop_toTopOf="@id/view_imail_profile"
-            app:layout_constraintStart_toEndOf="@id/view_imail_profile"
+            app:layout_constraintTop_toTopOf="@id/img_imail_profile"
+            app:layout_constraintStart_toEndOf="@id/img_imail_profile"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="Google" />
 

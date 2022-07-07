@@ -1,4 +1,4 @@
-package com.example.woowahan_mail
+package com.example.woowahan_mail.view
 
 import android.app.Activity
 import android.content.Context
@@ -7,6 +7,7 @@ import android.util.DisplayMetrics
 import android.view.WindowInsets
 import android.view.WindowManager
 import androidx.fragment.app.Fragment
+import com.example.woowahan_mail.R
 import com.example.woowahan_mail.view.main.MainActivity
 import com.google.android.material.navigation.NavigationView
 

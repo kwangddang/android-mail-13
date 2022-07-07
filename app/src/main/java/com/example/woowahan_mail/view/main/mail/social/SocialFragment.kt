@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.woowahan_mail.data.DummyData
 import com.example.woowahan_mail.databinding.FragmentSocialBinding
-import com.example.woowahan_mail.setDrawerIconColor
+import com.example.woowahan_mail.view.setDrawerIconColor
 import com.example.woowahan_mail.view.main.MainActivity
 import com.example.woowahan_mail.view.main.mail.MailAdapter
 
