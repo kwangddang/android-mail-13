@@ -12,6 +12,7 @@ import com.example.woowahan_mail.databinding.ActivityMainBinding
 import com.example.woowahan_mail.view.getDeviceWidth
 import com.example.woowahan_mail.view.main.mail.MailFragment
 import com.example.woowahan_mail.view.main.setting.SettingFragment
+import com.example.woowahan_mail.view.setDrawerIconColor
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,6 +35,7 @@ class MainActivity : AppCompatActivity() {
             showSettingFragment()
             viewModel.currentFocus = SELECTED_SETTING
             viewModel.currentMail = MailFragment.PRIMARY
+            setDrawerIconColor(viewModel.currentMail)
             true
         } else {
             false
@@ -46,6 +48,7 @@ class MainActivity : AppCompatActivity() {
                 viewModel.currentFocus = SELECTED_MAIL
                 viewModel.currentMail = MailFragment.PRIMARY
                 binding.drawerMainContainer.closeDrawer(GravityCompat.START)
+                setDrawerIconColor(MailFragment.PRIMARY)
                 showMailFragment()
                 true
             }
@@ -53,6 +56,7 @@ class MainActivity : AppCompatActivity() {
                 viewModel.currentFocus = SELECTED_MAIL
                 viewModel.currentMail = MailFragment.SOCIAL
                 binding.drawerMainContainer.closeDrawer(GravityCompat.START)
+                setDrawerIconColor(MailFragment.SOCIAL)
                 showMailFragment()
                 true
             }
@@ -60,6 +64,7 @@ class MainActivity : AppCompatActivity() {
                 viewModel.currentFocus = SELECTED_MAIL
                 viewModel.currentMail = MailFragment.PROMOTIONS
                 binding.drawerMainContainer.closeDrawer(GravityCompat.START)
+                setDrawerIconColor(MailFragment.PROMOTIONS)
                 showMailFragment()
                 true
             }
@@ -73,6 +78,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setDrawerIconColor(viewModel.currentMail)
         setProperView()
         setOnClickListeners()
     }

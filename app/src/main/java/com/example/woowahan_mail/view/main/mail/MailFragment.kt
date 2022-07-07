@@ -17,6 +17,7 @@ import com.example.woowahan_mail.view.getDeviceWidth
 import com.example.woowahan_mail.view.getMainActivity
 import com.example.woowahan_mail.view.main.MainActivity
 import com.example.woowahan_mail.view.main.MainViewModel
+import com.example.woowahan_mail.view.setDrawerIconColor
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.navigationrail.NavigationRailView
@@ -90,6 +91,7 @@ class MailFragment: Fragment() {
                     (binding.recyclerPrimary.adapter as MailAdapter).setDummyData(DummyData.primaryMail)
                     viewModel.currentMail = PRIMARY
                     binding.textPrimaryTitle.text = requireContext().getString(R.string.primary_title)
+                    requireActivity().setDrawerIconColor(PRIMARY)
                 }
                 else{
                     requireActivity().finish()
