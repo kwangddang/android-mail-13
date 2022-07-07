@@ -1,63 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraint_imail_container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <View
-        android:id="@+id/view_imail_profile"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:background="@drawable/circle"
-        android:backgroundTint="@color/colorPrimary"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+    <data>
+        <variable
+            name="mail"
+            type="com.example.woowahan_mail.data.Mail" />
+    </data>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_imail_container"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="L"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="@id/view_imail_profile"
-        app:layout_constraintEnd_toEndOf="@id/view_imail_profile"
-        app:layout_constraintTop_toTopOf="@id/view_imail_profile"
-        app:layout_constraintBottom_toBottomOf="@id/view_imail_profile"/>
+        android:padding="16dp">
 
-    <TextView
-        android:id="@+id/text_imail_addresser"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textColor="@color/colorOnSecondary"
-        android:paddingVertical="8dp"
-        android:layout_marginStart="8dp"
-        app:layout_constraintTop_toTopOf="@id/view_imail_profile"
-        app:layout_constraintStart_toEndOf="@id/view_imail_profile"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Google"/>
+        <View
+            android:id="@+id/view_imail_profile"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:background="@drawable/circle"
+            android:backgroundTint="@color/colorPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/text_imail_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@color/colorOnSecondary"
-        app:layout_constraintStart_toStartOf="@+id/text_imail_addresser"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_imail_addresser"
-        tools:text="보안 알림"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="@id/view_imail_profile"
+            app:layout_constraintEnd_toEndOf="@id/view_imail_profile"
+            app:layout_constraintTop_toTopOf="@id/view_imail_profile"
+            app:layout_constraintBottom_toBottomOf="@id/view_imail_profile"
+            bind:addresser="@{mail.addresser}"
+            tools:text="C"/>
 
-    <TextView
-        android:id="@+id/text_imail_content"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="@+id/text_imail_addresser"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_imail_title"
-        tools:text="Android에서 새로 로그인함"/>
+        <TextView
+            android:id="@+id/text_imail_addresser"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="@color/colorOnSecondary"
+            android:paddingVertical="4dp"
+            android:layout_marginStart="8dp"
+            android:text="@{mail.addresser}"
+            app:layout_constraintTop_toTopOf="@id/view_imail_profile"
+            app:layout_constraintStart_toEndOf="@id/view_imail_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Google" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/text_imail_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/colorOnSecondary"
+            android:text="@{mail.title}"
+            app:layout_constraintStart_toStartOf="@+id/text_imail_addresser"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_imail_addresser"
+            tools:text="보안 알림" />
+
+        <TextView
+            android:id="@+id/text_imail_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{mail.content}"
+            app:layout_constraintStart_toStartOf="@+id/text_imail_addresser"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_imail_title"
+            tools:text="Android에서 새로 로그인함" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

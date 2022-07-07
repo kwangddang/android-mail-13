@@ -12,10 +12,10 @@ import com.example.woowahan_mail.R
 import com.example.woowahan_mail.databinding.ActivityMainBinding
 import com.example.woowahan_mail.getDeviceWidth
 import com.example.woowahan_mail.view.main.mail.MailFragment
-import com.example.woowahan_mail.view.main.primary.PrimaryFragment
-import com.example.woowahan_mail.view.main.promotions.PromotionsFragment
+import com.example.woowahan_mail.view.main.mail.primary.PrimaryFragment
+import com.example.woowahan_mail.view.main.mail.promotions.PromotionsFragment
 import com.example.woowahan_mail.view.main.setting.SettingFragment
-import com.example.woowahan_mail.view.main.social.SocialFragment
+import com.example.woowahan_mail.view.main.mail.social.SocialFragment
 
 class MainActivity : AppCompatActivity() {
 

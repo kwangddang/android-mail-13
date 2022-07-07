@@ -25,9 +25,13 @@ class MailFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (requireActivity() as MainActivity).findViewById<BottomNavigationView>(R.id.bottom_navigation_main).
-            menu.findItem(R.id.item_main_menu_mail).isChecked = true
+        setIcon()
+    }
 
+    private fun setIcon() {
+        (requireActivity() as MainActivity).findViewById<BottomNavigationView>(R.id.bottom_navigation_main).menu.findItem(
+            R.id.item_main_menu_mail
+        ).isChecked = true
     }
 
     override fun onDestroyView() {
