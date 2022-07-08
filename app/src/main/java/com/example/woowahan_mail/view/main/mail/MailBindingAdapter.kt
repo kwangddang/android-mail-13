@@ -1,8 +1,6 @@
 package com.example.woowahan_mail.view.main.mail
 
-import android.content.Context
 import android.content.res.ColorStateList
-import android.os.Build
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat

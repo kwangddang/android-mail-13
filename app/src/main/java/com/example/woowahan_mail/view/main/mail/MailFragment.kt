@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.OnBackPressedDispatcher
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.woowahan_mail.R
@@ -15,11 +14,9 @@ import com.example.woowahan_mail.data.Mail
 import com.example.woowahan_mail.databinding.FragmentMailBinding
 import com.example.woowahan_mail.view.getDeviceWidth
 import com.example.woowahan_mail.view.getMainActivity
-import com.example.woowahan_mail.view.main.MainActivity
 import com.example.woowahan_mail.view.main.MainViewModel
 import com.example.woowahan_mail.view.setDrawerIconColor
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationView
 import com.google.android.material.navigationrail.NavigationRailView
 
 class MailFragment: Fragment() {

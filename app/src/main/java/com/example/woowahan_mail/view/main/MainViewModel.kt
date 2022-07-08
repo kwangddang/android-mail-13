@@ -1,7 +1,6 @@
 package com.example.woowahan_mail.view.main
 
 import androidx.lifecycle.ViewModel
-import com.example.woowahan_mail.data.DummyData
 import com.example.woowahan_mail.view.main.mail.MailFragment
 
 class MainViewModel: ViewModel() {
